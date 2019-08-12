@@ -1,12 +1,23 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import UtilityBar from "./UtilityBar";
-import Rectangle from "../assets/shapes"
+import Rectangle from "../assets/shapes";
 import * as joint from "jointjs";
+import _ from "lodash";
 
 class DiagramView extends Component {
-
-  state = {}
+  state = {
+    rectForm: {
+      x: 50,
+      y: 50,
+      w: 50,
+      h: 20,
+      topPorts: 0,
+      botPorts: 0,
+      color: "green",
+      title: ""
+    }
+  };
 
   constructor() {
     super();
@@ -15,46 +26,67 @@ class DiagramView extends Component {
   }
 
   componentDidMount() {
-    console.log(this.refs.diagramView.parentNode);
     this.paper = new joint.dia.Paper({
       el: ReactDOM.findDOMNode(this.refs.diagramView),
       width: "80vw",
       height: "70vh",
       model: this.graph,
-      gridSize: 1
+      gridSize: 1,
+      defaultLink: new joint.dia.Link({
+        router: { name: "manhattan" },
+        connector: { name: "jumpover" }
+      })
     });
   }
 
-  handleTest = () => {
-    let test = new Rectangle({
-      x: 100, y: 100,
-      w: 200, h: 100,
-      color: "grey",
+  createRect = event => {
+    const { x, y, h, w, topPorts, botPorts, color, title } = this.state.rectForm;
+
+    let rect = new Rectangle({
+      x: x,
+      y: y,
+      w: w,
+      h: h,
+      topPorts: +topPorts,
+      botPorts: +botPorts,
+      color: color,
       text: {
-        text: "poop",
+        text: title,
         color: "black",
         font: 12
-      }
-    })
-    this.graph.addCell(test.cell);
-    console.log(test.cell)
-  }
+      },
+      graph: this.graph
+    });
+
+    this.graph.addCell(rect.cell);
+    console.log(rect.cell)
+    event.preventDefault();
+  };
+
+  clearGraph = () => {
+    this.graph.removeCells(this.graph.getElements());
+  };
+
+  handleRectChange = event => {
+    const { name, value } = event.target;
+    var rectForm = { ...this.state.rectForm };
+    this.setState({ rectForm: _.set(rectForm, name, value) });
+  };
 
   render() {
     return (
-      <div className="container-fluid">
-        <div 
-          ref="diagramView" 
-          style={
-            { backgroundColor: "#ffffff",
-              marginTop: "5vh"
-            }
-          } 
-          className="row"
-        />
+      <div className="container">
         <div className="row">
-          <UtilityBar 
-            onTest={this.handleTest}
+          <div
+            ref="diagramView"
+            style={{ backgroundColor: "#ffffff", marginTop: "5vh" }}
+          />
+        </div>
+        <div className="row">
+          <UtilityBar
+            onCreate={this.createRect}
+            onClear={this.clearGraph}
+            onRectChange={this.handleRectChange}
           />
         </div>
       </div>
