@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class UtilityBar extends Component {
-
   render() {
     return (
       <div
@@ -14,24 +13,28 @@ class UtilityBar extends Component {
         <form className="row">
           <div className="col-md-4">
             <div className="form-row">
-              <label className="col-2 col-form-label col-form-label">Width</label>
+              <label className="col-2 col-form-label col-form-label">
+                Width
+              </label>
               <div className="form-group col-4">
                 <input
                   type="number"
                   className="form-control"
-                  defaultValue="50"
+                  defaultValue="100"
                   onChange={this.props.onRectChange}
                   name="w"
                   min="10"
                   max="500"
                 />
               </div>
-              <label className="col-2 col-form-label col-form-label">Height</label>
+              <label className="col-2 col-form-label col-form-label">
+                Height
+              </label>
               <div className="form-group col-4">
                 <input
                   type="number"
                   className="form-control"
-                  defaultValue="20"
+                  defaultValue="50"
                   onChange={this.props.onRectChange}
                   name="h"
                   min="10"
@@ -42,10 +45,10 @@ class UtilityBar extends Component {
             <div className="form-row">
               <label className="col-2 col-form-label col-form-label">X</label>
               <div className="form-group col-4">
-                <input 
+                <input
                   type="number"
                   className="form-control"
-                  defaultValue="50"
+                  defaultValue="250"
                   onChange={this.props.onRectChange}
                   name="x"
                   min="0"
@@ -53,10 +56,10 @@ class UtilityBar extends Component {
               </div>
               <label className="col-2 col-form-label col-form-label">Y</label>
               <div className="form-group col-4">
-                <input 
+                <input
                   type="number"
                   className="form-control"
-                  defaultValue="50"
+                  defaultValue="250"
                   onChange={this.props.onRectChange}
                   name="y"
                   min="0"
@@ -66,24 +69,28 @@ class UtilityBar extends Component {
           </div>
           <div className="col-md-4">
             <div className="form-row">
-              <label className="col-3 col-form-label col-form-label">Top Ports</label>
+              <label className="col-3 col-form-label col-form-label">
+                Top Ports
+              </label>
               <div className="form-group col-3">
                 <input
                   type="number"
                   className="form-control"
-                  defaultValue="0"
+                  defaultValue="2"
                   onChange={this.props.onRectChange}
                   name="topPorts"
                   min="0"
                   max="50"
                 />
               </div>
-              <label className="col-3 col-form-label col-form-label">Bot Ports</label>
+              <label className="col-3 col-form-label col-form-label">
+                Bot Ports
+              </label>
               <div className="form-group col-3">
                 <input
                   type="number"
                   className="form-control"
-                  defaultValue="0"
+                  defaultValue="2"
                   onChange={this.props.onRectChange}
                   name="botPorts"
                   min="0"
@@ -92,22 +99,27 @@ class UtilityBar extends Component {
               </div>
             </div>
             <div className="form-row">
-              <label className="col-2 col-form-label col-form-label">Text</label>
+              <label className="col-2 col-form-label col-form-label">
+                Text
+              </label>
               <div className="form-group col-4">
                 <input
                   type="text"
                   className="form-control"
-                  defaultValue=""
+                  defaultValue="Sample"
                   onChange={this.props.onRectChange}
                   name="title"
                 />
               </div>
-              <label className="col-2 col-form-label col-form-label">Color</label>
+              <label className="col-2 col-form-label col-form-label">
+                Color
+              </label>
               <div className="form-group col-4">
-                <select 
-                  className="form-control" 
+                <select
+                  className="form-control"
                   onChange={this.props.onRectChange}
-                  name="color">
+                  name="color"
+                >
                   <option value="green">Green</option>
                   <option value="blue">Blue</option>
                   <option value="grey">Grey</option>
@@ -118,12 +130,18 @@ class UtilityBar extends Component {
           </div>
           <div className="col-md-4">
             <div className="form-group">
-              <button onClick={this.props.onCreate} className="btn btn-success btn-block">
+              <button
+                onClick={this.props.onCreate}
+                className="btn btn-success btn-block"
+              >
                 CREATE
               </button>
             </div>
             <div className="form-group">
-              <button onClick={this.props.onClear} className="btn btn-danger btn-block">
+              <button
+                onClick={this.props.onClear}
+                className="btn btn-danger btn-block"
+              >
                 CLEAR
               </button>
             </div>

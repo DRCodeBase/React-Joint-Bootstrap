@@ -8,14 +8,14 @@ import _ from "lodash";
 class DiagramView extends Component {
   state = {
     rectForm: {
-      x: 50,
-      y: 50,
-      w: 50,
-      h: 20,
-      topPorts: 0,
-      botPorts: 0,
+      x: 250,
+      y: 250,
+      w: 100,
+      h: 50,
+      topPorts: 2,
+      botPorts: 2,
       color: "green",
-      title: ""
+      title: "Sample"
     }
   };
 
@@ -26,22 +26,29 @@ class DiagramView extends Component {
   }
 
   componentDidMount() {
+    // Initialize paper.
     this.paper = new joint.dia.Paper({
       el: ReactDOM.findDOMNode(this.refs.diagramView),
       width: "80vw",
       height: "70vh",
       model: this.graph,
-      gridSize: 1,
-      defaultLink: new joint.dia.Link({
-        router: { name: "manhattan" },
-        connector: { name: "jumpover" }
-      })
+      gridSize: 1
     });
   }
 
   createRect = event => {
-    const { x, y, h, w, topPorts, botPorts, color, title } = this.state.rectForm;
+    const {
+      x,
+      y,
+      h,
+      w,
+      topPorts,
+      botPorts,
+      color,
+      title
+    } = this.state.rectForm;
 
+    // Construct new rectangle cell.
     let rect = new Rectangle({
       x: x,
       y: y,
@@ -58,16 +65,18 @@ class DiagramView extends Component {
       graph: this.graph
     });
 
+    // Add new cell to graph.
     this.graph.addCell(rect.cell);
-    console.log(rect.cell)
     event.preventDefault();
   };
 
-  clearGraph = () => {
+  clearGraph = event => {
+    // remove each cell from the graph.
     this.graph.removeCells(this.graph.getElements());
+    event.preventDefault();
   };
 
-  handleRectChange = event => {
+  handleRectFormChange = event => {
     const { name, value } = event.target;
     var rectForm = { ...this.state.rectForm };
     this.setState({ rectForm: _.set(rectForm, name, value) });
@@ -86,7 +95,7 @@ class DiagramView extends Component {
           <UtilityBar
             onCreate={this.createRect}
             onClear={this.clearGraph}
-            onRectChange={this.handleRectChange}
+            onRectChange={this.handleRectFormChange}
           />
         </div>
       </div>
