@@ -2,7 +2,7 @@
   "name": "flow-diagram-gen",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://react-joint-boostrap.herokuapp.com",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "jointjs": "^3.0.4",
