@@ -7,11 +7,11 @@
     "jointjs": "^3.0.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.0",
-    "start": "node server.js"
+    "react-scripts": "3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "local": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
